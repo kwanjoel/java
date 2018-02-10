@@ -18,14 +18,13 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String s;
-
 		// Array to store the shapes
 		Shape[] shapes = new Shape[50];
 
-		// Counter to keep track of shapes created
-		int index = 0;
+		// Counter to keep track of number of shapes created
+		int count = 0;
 
+		String s;
 		try (BufferedReader br = new BufferedReader(new FileReader("shapes.txt"))) {
 			while ((s = br.readLine()) != null) {
 				String[] tokens = s.split(",");
@@ -39,8 +38,8 @@ public class Main {
 					if (tokens[i].equals("Circle") && tokens.length == 2) {
 						try {
 							double radius = Double.parseDouble(tokens[i + 1]);
-							shapes[index] = new Circle(radius);
-							index++;
+							shapes[count] = new Circle(radius);
+							count++;
 						} catch (CircleException e) {
 							System.out.println(e.getMessage());
 						}
@@ -51,8 +50,8 @@ public class Main {
 						double side3 = Double.parseDouble(tokens[i + 3]);
 
 						try {
-							shapes[index] = new Triangle(side1, side2, side3);
-							index++;
+							shapes[count] = new Triangle(side1, side2, side3);
+							count++;
 						} catch (TriangleException e) {
 							System.out.println(e.getMessage());
 						}
@@ -62,8 +61,8 @@ public class Main {
 						double length = Double.parseDouble(tokens[i + 2]);
 
 						try {
-							shapes[index] = new Parallelogram(width, length);
-							index++;
+							shapes[count] = new Parallelogram(width, length);
+							count++;
 						} catch (ParallelogramException e) {
 							System.out.println(e.getMessage());
 						} catch (SquareException e) {
@@ -75,8 +74,8 @@ public class Main {
 						double length = Double.parseDouble(tokens[i + 2]);
 
 						try {
-							shapes[index] = new Rectangle(width, length);
-							index++;
+							shapes[count] = new Rectangle(width, length);
+							count++;
 						} catch (ParallelogramException e) {
 							System.out.println(e.getMessage());
 						} catch (SquareException e) {
@@ -87,8 +86,8 @@ public class Main {
 						double side = Double.parseDouble(tokens[i + 1]);
 
 						try {
-							shapes[index] = new Square(side);
-							index++;
+							shapes[count] = new Square(side);
+							count++;
 						} catch (ParallelogramException e) {
 							System.out.println(e.getMessage());
 						} catch (SquareException e) {
@@ -102,11 +101,45 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println(index + " shapes were created:");
+		// --------------------------------------------Task One---------------------------------------
+		/*
+		 * System.out.println(count + " shapes were created:");
+		 * 
+		 * for (int i = 0; i < count; i++) { System.out.println(shapes[i]); }
+		 */
+		
+		
+		// --------------------------------------------Task Two---------------------------------------
+		double minPerimeter = Double.MAX_VALUE;
+		double maxPerimeter = 0;
 
-		for (int j = 0; j < index; j++) {
-			System.out.println(shapes[j]);
+		// Identify minPerimeter triangles and maxPerimeter circles
+		for (int i = 0; i < count; i++) {
+			if (shapes[i] instanceof Circle && shapes[i].CalcPerimeter() > maxPerimeter) {
+				maxPerimeter = shapes[i].CalcPerimeter();
+			}
+
+			if (shapes[i] instanceof Triangle && shapes[i].CalcPerimeter() < minPerimeter) {
+				minPerimeter = shapes[i].CalcPerimeter();
+			}
 		}
+
+		// Deleting shapes that meet criteria
+		for (int i = 0; i < count; i++) {
+			if ((shapes[i] instanceof Circle && shapes[i].CalcPerimeter() == maxPerimeter)
+					|| (shapes[i] instanceof Triangle && shapes[i].CalcPerimeter() == minPerimeter)) {
+				shapes[i] = null;
+			}
+		}
+
+		// Displaying Results
+		for (int i = 0; i < count; i++) {
+			if (shapes[i] != null)
+				System.out.println(shapes[i]);
+
+		}
+		
+		// --------------------------------------------Task Three---------------------------------------
 
 	}
 
