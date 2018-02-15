@@ -110,7 +110,10 @@ public class Main {
 		
 		
 		// --------------------------------------------Task Two---------------------------------------
+		
+		
 		double minPerimeter = Double.MAX_VALUE;
+		 
 		double maxPerimeter = 0;
 
 		// Identify minPerimeter triangles and maxPerimeter circles
@@ -129,18 +132,42 @@ public class Main {
 			if ((shapes[i] instanceof Circle && shapes[i].CalcPerimeter() == maxPerimeter)
 					|| (shapes[i] instanceof Triangle && shapes[i].CalcPerimeter() == minPerimeter)) {
 				shapes[i] = null;
+				
 			}
 		}
-
-		// Displaying Results
-		for (int i = 0; i < count; i++) {
-			if (shapes[i] != null)
-				System.out.println(shapes[i]);
-
-		}
+		
+		
+		
+//		// Displaying Results
+//		for (int i = 0; i < count; i++) {
+//			if (shapes[i] != null) {
+//				System.out.println(shapes[i]);
+//			}
+//		}
+		
+	
 		
 		// --------------------------------------------Task Three---------------------------------------
+		
+		double totalParaPerimeter = 0;
+		double totalTriPerimeter = 0;
+		
+		//Iterate through shapes and sum up Parallelogram perimeter or Triangle perimeter
+		for (int i = 0; i < count; i++) {
+			if (shapes[i] instanceof Parallelogram && !(shapes[i] instanceof Rectangle)) {
+				totalParaPerimeter += shapes[i].CalcPerimeter();
+			}
+			
+			if (shapes[i] instanceof Triangle) {
+				totalTriPerimeter += shapes[i].CalcPerimeter();
+			}		
+		}
+		
+		//Display results	
+		System.out.println("Total perimeter of Parallelogram is: " + totalParaPerimeter);
+		System.out.println("Total perimeter of Triangle is: " + totalTriPerimeter);
 
+		
 	}
 
 }
