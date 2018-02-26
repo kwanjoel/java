@@ -27,8 +27,7 @@ public class Main {
 
 		// Serialization
 		try {
-			System.out.println("Serializing object...");
-			FileOutputStream fos = new FileOutputStream("test.out");
+			FileOutputStream fos = new FileOutputStream("SerializedAccount.out");
 
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
@@ -36,26 +35,24 @@ public class Main {
 
 			oos.flush();
 			fos.close();
-			System.out.println("Serializing object success");
 
 		} catch (Throwable e) {
 			System.err.println(e);
 		}
 
 		// Deserialization
-		Account test2 = null;
+		Account DeserializedAccount = null;
 		try {
-			System.out.println("Deserializing object...");
-
-			FileInputStream fis = new FileInputStream("test.out");
+			System.out.println("---Deserialization---");
+			
+			FileInputStream fis = new FileInputStream("SerializedAccount.out");
 
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			test2 = (Account) ois.readObject();
+			DeserializedAccount = (Account) ois.readObject();
 
 			fis.close();
-			System.out.println("Deserializing object success: ");
-			System.out.println(test2);
+			System.out.println(DeserializedAccount);
 
 		} catch (Throwable e) {
 			System.err.println(e);
