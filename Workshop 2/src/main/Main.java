@@ -26,37 +26,54 @@ public class Main {
 		System.out.println(test);
 
 		// Serialization
-		try {
-			FileOutputStream fos = new FileOutputStream("SerializedAccount.out");
+		System.out.print("Save? Y/N: ");
+		char save = input.next().charAt(0);
+		if (save == 'Y' || save == 'y') {
+			System.out.print("Save as: ");
+			String saveAs = input.next();
+			try {
+				FileOutputStream fos = new FileOutputStream(saveAs);
 
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-			oos.writeObject(test);
+				oos.writeObject(test);
 
-			oos.flush();
-			fos.close();
+				oos.flush();
+				fos.close();
 
-		} catch (Throwable e) {
-			System.err.println(e);
+			} catch (Throwable e) {
+				System.err.println(e);
+			}
 		}
 
 		// Deserialization
-		Account DeserializedAccount = null;
-		try {
-			System.out.println("---Deserialization---");
+		System.out.println("Load? Y/N: ");
+		char load = input.next().charAt(0);
+		if (load == 'Y' || load == 'y') {
 			
-			FileInputStream fis = new FileInputStream("SerializedAccount.out");
+			System.out.print("Filename: ");
+			String file = input.next();
 
-			ObjectInputStream ois = new ObjectInputStream(fis);
+			Account DeserializedAccount = null;
+			try {
+				System.out.println("---Deserialization---");
 
-			DeserializedAccount = (Account) ois.readObject();
+				FileInputStream fis = new FileInputStream(file);
 
-			fis.close();
-			System.out.println(DeserializedAccount);
+				ObjectInputStream ois = new ObjectInputStream(fis);
 
-		} catch (Throwable e) {
-			System.err.println(e);
+				DeserializedAccount = (Account) ois.readObject();
+
+				fis.close();
+				System.out.println(DeserializedAccount);
+
+			} catch (Throwable e) {
+				System.err.println(e);
+			}
+			
+			
+
 		}
-		
+		System.out.println("----- END -----");
 	}
 }
