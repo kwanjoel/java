@@ -47,7 +47,7 @@ public class Main {
 		}
 
 		// Deserialization
-		System.out.println("Load? Y/N: ");
+		System.out.print("Load? Y/N: ");
 		char load = input.next().charAt(0);
 		if (load == 'Y' || load == 'y') {
 			
@@ -70,7 +70,9 @@ public class Main {
 			} catch (Throwable e) {
 				System.err.println(e);
 			}
-			
+			finally {
+				input.close();
+			}
 			
 
 		}
