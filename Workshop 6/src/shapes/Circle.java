@@ -11,7 +11,7 @@ public class Circle implements Shape {
 	
 	@Override
 	public String toString(){
-		return ("Circle {r = " + getRadius() + "} perimeter = " + CalcPerimeter());
+		return ("Circle {r = " + getRadius() + "} perimeter = " + CalcPerimeter() + " area = " + area.get());
 	}
 	
 	//Getters and Setters

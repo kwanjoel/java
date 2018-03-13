@@ -9,7 +9,7 @@ public class Rectangle extends Parallelogram{
 		
 		@Override
 		public String toString(){
-			return ("Rectangle {w = " + getWidth() + " l = " + getLength() + "} perimeter = " + CalcPerimeter());
+			return ("Rectangle {w = " + getWidth() + " l = " + getLength() + "} perimeter = " + CalcPerimeter() + " area = " + area.get());
 		}
 		
 		//Constructors

@@ -9,7 +9,7 @@ public class Square extends Rectangle{
 	
 	@Override
 	public String toString(){
-		return("Square {s = " + getLength() + "} perimeter = " + CalcPerimeter());
+		return("Square {s = " + getLength() + "} perimeter = " + CalcPerimeter() + " area = " + area.get());
 	}
 	
 	//Constructors

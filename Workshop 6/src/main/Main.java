@@ -107,26 +107,9 @@ public class Main {
 		System.out.println(count + " shapes were created:");
 
 		for (int i = 0; i < count; i++) {
-			System.out.print(shapes[i]);
+			System.out.println(shapes[i]);
 
-			
-			// ----------------------------------------Workshop 6 ------------------------------------
-			
-			//For Circles:
-			if (shapes[i] instanceof Circle) {
-				double [] values = {((Circle) shapes[i]).getRadius()};
-				System.out.print(" area = " + ((Circle)shapes[i]).area.get());
 
-			}
-			
-			//For rectangles and squares:
-			if (shapes[i] instanceof Rectangle) {
-				double [] values = {((Rectangle)shapes[i]).getLength(), ((Rectangle)shapes[i]).getWidth()};
-				System.out.print(
-						" area = " + ((Rectangle)shapes[i]).area.get());
-			}
-
-			System.out.print("\n");
 
 		}
 
